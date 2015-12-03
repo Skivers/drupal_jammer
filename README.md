@@ -1,10 +1,9 @@
 # drupal_jammer
 used inconjunction with google analytics to disable referrer spam
 
-        <pre>
-  <?php if (function_exists('skivers_jammer_get_refer')): ?>
-        <?php if (skivers_jammer_get_refer()): ?>
-
+		<?php if (function_exists('skivers_jammer_get_refer')): ?>
+        	<?php if (skivers_jammer_get_refer()): ?>
+			<pre>
                 (function (i, s, o, g, r, a, m) {
                     i['GoogleAnalyticsObject'] = r;
                     i[r] = i[r] || function () {
@@ -19,6 +18,6 @@ used inconjunction with google analytics to disable referrer spam
 
                 ga('create', '[REPLACE ME WITH GOOGLE ANALYTICAL CODE]', 'auto');
                 ga('send', 'pageview');
-        <?php endif; ?>
-  <?php endif; ?>
-		</pre>
+				</pre>
+        	<?php endif; ?>
+  		<?php endif; ?>
