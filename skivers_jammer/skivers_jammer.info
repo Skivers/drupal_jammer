@@ -1,0 +1,6 @@
+name = Skivers Anatical Spam Jaming tool
+description = Skivers Anatical Spam Jaming tool created by <a href="http://www.skivers.co.uk"> Skivers</a>
+;dependencies[] =
+package = SKIVERS
+version = "7.x-0.1"
+core = 7.x

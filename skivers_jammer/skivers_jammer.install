@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * 	Implementation of hook_schema();
+ */
+function skivers_jammer_schema() {
+
+	$schema['skivers_jammer'] = array(
+		'description' => t('Store all search items'),
+		'fields' => array(
+			'uid' => array(
+				'description' => 'The unique ID of a product',
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+			),
+			'name' => array(
+				'type' => 'varchar',
+				'length' => 255,
+				'not null' => FALSE,
+				'default' => '',
+			),
+		),
+		'unique keys' => array(
+			'uid' => array('uid'),
+		),
+		'primary key' => array('uid'),
+	);
+
+	return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function skivers_jammer_install() {
+	// Use schema API to create database table.
+	if (!db_table_exists('skivers_jammer')) {
+		drupal_install_schema('skivers_jammer_schema');
+		return true;
+	}
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function skivers_jammer_uninstall() {
+	// Check table exists
+	if (db_table_exists('skivers_jammer')) {
+		// Remove the table
+		drupal_uninstall_schema('skivers_jammer_schema');
+		// purge all field infromation
+		field_purge_batch(1000);
+		node_types_rebuild();
+		return;
+	}
+}
