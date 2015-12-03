@@ -5,33 +5,8 @@ function skivers_jammer_get_refer()
     if (!isset($_SESSION['org_referer'])) {
         $_SESSION['org_referer'] = $_SERVER['HTTP_REFERER'];
 
-        $exempt = array(
-            "best",
-            "websitesawards",
-            "solution",
-            "claim",
-            "snip",
-            "social",
-            "social",
-            "doubleclick",
-            "cyber",
-            "adf",
-            "black",
-            "isex",
-            "tracker",
-            "friday",
-            "monday",
-            "0-0-8",
-            "o-o-8",
-            "smoking",
-            "copyrightclaims",
-            "site",
-            "get",
-            "double",
-            "alibestsale",
-            "weblight",
-            "xyz",
-        );
+        $exempt = db_query("Select name from skivers_jammer")->fetchAll();
+
         foreach ($exempt as $e) {
             if (preg_match("/" . $e . "/", $_SESSION['org_referer'], $matches, PREG_OFFSET_CAPTURE)) {
                 return false;
